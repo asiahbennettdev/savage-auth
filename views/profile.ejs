@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>21 Savage Fan Site</title>
+    <title>Demo Day</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
@@ -18,27 +18,40 @@
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
+
+            <div class="widget ranna-box-padding">
+                <div class="section-heading heading-dark">
+                    <h3 class="item-heading">ABOUT ME</h3>
+                </div>
+                <div class="widget-about">
+                    <figure class="author-figure"><img src="img/figure/about.jpg" alt="about"></figure>
+                    <figure class="author-signature"><img src="img/figure/signature.png" alt="about"></figure>
+                    <p>Fusce mauris auctor ollicituder teary iner hendrerit risusey aeenean rauctor pibus
+                        doloer.</p>
+                </div>
+            </div>
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3><span class="fa fa-user"></span> User Name</h3>
 
                 <% if (user.local.email) { %>
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
+                        <!-- <strong>id</strong>: <%= user._id %><br>
                         <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                        <strong>password</strong>: <%= user.local.password %> -->
                     </p>
 
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
+                    <a href="/unlink/local" class="btn btn-default">Delete Profile</a>
+                    <p>Navigate to <a href="/">homepage</a>.</p>
+                    <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
-
             </div>
         </div>
         <div class="col-sm-6">
           <h3>Messages</h3>
           <ul class="messages">
           <% for(var i=0; i<messages.length; i++) {%>
+          <% if (user.local.email == messages[i].name) { %>
             <li class="message">
               <span><%= messages[i].name %></span>
               <span><%= messages[i].msg %></span>
@@ -48,6 +61,7 @@
               <span><i class="fa fa-trash" aria-hidden="true"></i></span>
             </li>
           <% } %>
+          <% } %>
           </ul>
 
           <h2>Add a message</h2>
@@ -55,13 +69,14 @@
           <form action="/messages" method="POST">
             <input type="text" value="<%= user.local.email %>" name="name">
             <input type="text" placeholder="message" name="msg">
+            <input type="url" placeholder="Recipe Image" name="pic">
             <button type="submit">Submit</button>
           </form>
         </div>
         <% } %>
 
 </div>
-
+  <script src="https://kit.fontawesome.com/077191d827.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 
 </body>
